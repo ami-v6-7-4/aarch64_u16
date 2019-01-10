@@ -14,10 +14,28 @@ build:
     pull: true
     
   ci:
+    - java -version
+    - nodejs --version
+    - yarn -version
+    - source /usr/local/rvm/scripts/rvm
+    - ruby -v
     - python -V
-    - docker ps
-    - docker images
-    
+    - pip --version
+    - virtualenv --version
+    - git --version
+    - aws --version #1.15.55
+    - eb --version #3.14.2
+    - az --version #3.0.0
+    - jfrog --version #1.15.1
+    - gcloud version #207.0.0
+    - git lfs version
+    - kubectl version --client #1.11.0
+    - packer --version #1.2.2
+    - EXPECTED_DOCKER_VERSION="17.06.0-ce"
+    - |
+      [ $(docker version --format {{.Server.Version}}) == "$EXPECTED_DOCKER_VERSION" ]
+    - docker pull shippabledocker/sample_node_pvt:ecr
+
 integrations:
     
   hub:
